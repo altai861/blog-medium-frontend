@@ -1,3 +1,121 @@
-@tailwindcss base;
-@tailwind components;
-@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+
+.navbar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: auto; 
+    width: 100%;
+}
+
+.navbar {
+    font-family: 'Roboto Condensed', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 9rem;
+    margin-right: 9rem;
+    margin-top: 1rem;
+   
+}
+
+.menu {
+    display: flex;
+    position: relative;
+}
+
+.item-submenu {
+    display: none;
+    position: absolute;
+}
+
+.menu-item {
+    margin-right: 1rem;
+}
+
+.menu-item:hover .item-submenu {
+    display: block;
+}
+
+.menu-item-link {
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.menu-item-link:hover {
+    color: palevioletred;
+}
+
+.other-part {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.other-part div input {
+    font-size: 14px;
+    height: 34px;
+    color: #555;
+    width: 180px;
+    border-radius: 5px;
+    border: 0.5px solid #555;
+    text-indent: 10px;
+}
+
+@media (max-width: 1050px) {
+    .navbar {
+        margin-right: 3rem;
+        margin-left: 3rem;
+    }
+}
+
+.phone-nav-other-part {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.phone-nav-other-part button {
+    outline: none;
+    border: none;
+    background-color: #FFF;
+}
+
+.menu-for-phone{
+    font-family: 'Roboto Condensed', sans-serif;
+    scroll-behavior: smooth;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-for-phone ul li {
+    margin-top: 4px;
+    list-style-type: none;
+}
+
+
+.phone-nav-link:hover {
+    text-decoration: underline;
+}
+
+
+.home {
+    margin-left: 9rem;
+    margin-right: 9rem;
+    margin-top: 3rem;
+    
+}
+
+.top-title {
+    border-left: 4px solid #F8E71C;
+}
+
+.top-title p {
+    font-size: 20px;
+    line-height: 22px;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-left: 10px;
+}
