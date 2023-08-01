@@ -27,6 +27,7 @@
 .item-submenu {
     display: none;
     position: absolute;
+    background-color: white;
 }
 
 .menu-item {
@@ -119,3 +120,90 @@
     font-family: 'Roboto Condensed', sans-serif;
     margin-left: 10px;
 }
+.sign-up {
+    font-family: 'Roboto Condensed', sans-serif;;
+    margin-left: 9rem;
+    margin-right: 9rem;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aquamarine;
+    border-radius: 10px;
+    padding: 2rem;
+}
+.log-in {
+    font-family: 'Roboto Condensed', sans-serif;;
+    margin-left: 9rem;
+    margin-right: 9rem;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aquamarine;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.sign-up-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.log-in-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-up-form input {
+    margin-bottom: 1rem;
+    width: 400px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: large;
+    border: 3px rgb(211, 202, 202) solid; 
+    text-indent: 10px;
+}
+.log-in-form input {
+    margin-bottom: 1rem;
+    width: 400px;
+    height: 50px;
+    border-radius: 10px;
+    font-size: large;
+    border: 3px rgb(211, 202, 202) solid; 
+    text-indent: 10px;
+}
+
+.sign-up-submit-button {
+    background-color: blue;
+    color: white;
+}
+.log-in-submit-button {
+    background-color: blue;
+    color: white;
+}
+
+.sign-up-submit-button:hover {
+    background-color: aqua;
+    color: black;
+    font-size: larger;
+}
+.log-in-submit-button:hover {
+    background-color: aqua;
+    color: black;
+    font-size: larger;
+}
+
+
+.sign-up-input:hover {
+    border: 3px black solid;
+}
+.log-in-input:hover {
+    border: 3px black solid;
+}
+
