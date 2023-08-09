@@ -1,54 +1,54 @@
 import React from 'react'
 import { useState } from 'react'
-import { useSelector, useDispatch } from "react-redux"
-import { setLogin } from './AuthSlice'
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify';
+import axios from '../../api/axios';
+
+const LOGIN_URL = '/auth/login'
 
 
 const Login = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const loginUser = async () => {
-    const apiUrl = "http://localhost:3500/auth/login";
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        "username": username,
-        "password": password
-      })
-    }
-    try {
-      const response = await fetch(apiUrl, requestOptions);
-      if (!response.ok) {
-        const error_data = await response.json();
-        toast.error(error_data.message);
-        return
-      }
-      const success_data = await response.json();
-      console.log(success_data.accessToken);
-      dispatch(setLogin(success_data.accessToken))
-      navigate('/')
 
-    } catch (error) {
-      console.log(error.message)
-    }
-
-  }
-
-
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
     console.log("Login form submitted")
     // make post request to the server and if the user exists then, 
     // log the user in, else return an error message
-    loginUser()
+    try {
+      const response = await axios.post(LOGIN_URL, 
+        JSON.stringify({ username, password }),
+        {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true
+        }
+      );
+
+      console.log(JSON.stringify(response?.data));
+
+      const accessToken = response?.data?.accessToken;
+      
+      console.log(response?.data)
+      setUsername('');
+      setPassword('');
+
+      navigate(from, { replace: true })
+      
+      
+    } catch (error) {
+      if (!error.response) {
+        toast.error('No server response')
+      } else if (error.response?.status === 400) {
+        toast.error('Missing username or password')
+      } else if (error.response?.status === 401) {
+        toast.error('Unauthorized')
+      } else {
+        toast.error('Login Failed');
+      }
+    } 
   
   }
 
