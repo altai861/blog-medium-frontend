@@ -1,13 +1,16 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify';
 import axios from '../../api/axios';
+import useAuth from '../../hooks/useAuth';
+
 
 const LOGIN_URL = '/auth/login'
 
 
 const Login = () => {
+  const { setAuth, persist, setPersist } = useAuth();
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate();
@@ -30,16 +33,21 @@ const Login = () => {
       console.log(JSON.stringify(response?.data));
 
       const accessToken = response?.data?.accessToken;
-      
+      const roles = response?.data?.roles
+      console.log(roles)
+
+      setAuth({ username, password, roles, accessToken });
+
       console.log(response?.data)
       setUsername('');
       setPassword('');
 
-      navigate(from, { replace: true })
+      //For now go to home page
+      navigate("/")
       
       
     } catch (error) {
-      if (!error.response) {
+      if (error && !error.response) {
         toast.error('No server response')
       } else if (error.response?.status === 400) {
         toast.error('Missing username or password')
@@ -51,6 +59,14 @@ const Login = () => {
     } 
   
   }
+
+  const togglePersist = () => {
+    setPersist(!persist)
+  }
+
+  useEffect(() => {
+    localStorage.setItem("persist", persist)
+  }, [persist])
 
   return (
     <div className='log-in'>
@@ -74,6 +90,16 @@ const Login = () => {
         <input type="password" placeholder='Нууц үг' className='log-in-input' value={password} onChange={(e) => setPassword(e.target.value)} required></input>
         <input type="submit" value="Нэвтрэх" className='log-in-submit-button'></input>
       </form>
+      <div className='persistCheck'>
+        <input 
+          type="checkbox"
+          id="persist"
+          onChange={togglePersist}
+          checked={persist}
+        />
+        <label htmlFor='persist'>Trust this device</label>
+      </div>
+      
       <p>Бүртгүүлэх үү? <a href="/sign-up">Бүртгүүлэх</a></p>
     </div>
   )

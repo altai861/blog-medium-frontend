@@ -1,16 +1,17 @@
 import { useMediaQuery } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 
 
 const Menu = () => {
     const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
-
     const navbarTexts = ['ЭНТЕРТАЙНМЕНТ', 'БОЛОВСРОЛ', 'ХУВЬ ХҮНИЙ ХӨГЖИЛ', 'ЯРИЛЦЛАГА', 'СОНИН ХАЧИН', 'ЗӨВЛӨГӨӨ', 'КОМИК']
-    
+    const navigate = useNavigate();
   return (
     <div className="menu">
         <div className="menu-item">
             <div className="menu-item-link">
-              <a className="link">ЭНТЕРТАЙНМЕНТ</a>
+              <a className="link" onClick={() => navigate("/entertainment")}>ЭНТЕРТАЙНМЕНТ</a>
             </div>
             
             <div className="item-submenu">
@@ -29,7 +30,7 @@ const Menu = () => {
         </div>
         <div className="menu-item">
             <div className="menu-item-link">
-                <a className="link">БОЛОВСРОЛ</a>
+                <a className="link" onClick={() => navigate('education')}>БОЛОВСРОЛ</a>
             </div>
             
             <div className="item-submenu">

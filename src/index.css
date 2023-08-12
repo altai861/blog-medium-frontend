@@ -207,3 +207,8 @@
     border: 3px black solid;
 }
 
+
+.link {
+    text-decoration: none;
+    color: black;
+}

@@ -9,11 +9,16 @@ import { useMediaQuery } from "@mui/material";
 import windowsImage from '../../assets/windoes-icon.png'
 import MenuForPhone from "./MenuForPhone";
 import { Outlet } from "react-router-dom"
-
+import useAuth from "../../hooks/useAuth";
 //My temporary image
 import altai from "../../assets/altai.jpeg";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+
+    const { auth } = useAuth();
+    const navigate = useNavigate();
+
     const [isSearchOn, setIsSearchOn] = useState(false);
     const [isMenuForPhoneOn, setIsMenuForPhoneOn] = useState(false);
     const isDesktopScreen = useMediaQuery("(min-width: 1050px)");
@@ -22,7 +27,7 @@ const Navbar = () => {
         <div className="navbar-container">
             <div className="navbar">
                 <div className="yolo-image">
-                    <img src={yoloImage} width="110"/>
+                    <img src={yoloImage} width="110" onClick={() => navigate("/")}/>
                 </div>
                 { isDesktopScreen ? (
                     <div className="other-part">
